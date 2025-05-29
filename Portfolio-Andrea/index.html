@@ -1,75 +1,1046 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio K-Pop 💖</title>
-  <link rel="stylesheet" href="./style.css">
-  <script defer src="./script.js"></script>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Portafolio</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* HEADER */
+    header {
+      background: #333;
+      color: white;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    header .logo i {
+      font-size: 1.8rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #4a90e2;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 4rem 0 2rem 0;
+      background: #007bff;
+      color: white;
+      position: relative;
+      animation: floatY 6s ease-in-out infinite;
+      border-radius: 0 0 25px 25px;
+      margin-bottom: 3rem;
+    }
+
+    .hero .nombre {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 1.2px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero .perfil {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1rem;
+      transition: transform 0.4s ease;
+      cursor: default;
+    }
+
+    .hero .perfil:hover {
+      transform: scale(1.05) rotate(3deg);
+    }
+
+    .hero p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    /* SECTIONS GENERAL */
+    section {
+      padding: 3rem 0;
+      animation: floatY 6s ease-in-out infinite;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #007bff;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      position: relative;
+    }
+
+    h2 i {
+      margin-right: 10px;
+      color: #007bff;
+    }
+
+    .container > *:not(img) {
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container > *:not(img):hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* NAVIGATION GRID */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* Proyectos grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Timeline */
+    .timeline {
+      list-style: none;
+      padding-left: 1rem;
+      border-left: 4px solid #007bff;
+    }
+
+    .timeline li {
+      margin-bottom: 1.8rem;
+      padding-left: 1rem;
+    }
+
+    .timeline li h3,
+    .timeline li p {
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .timeline li p {
+      font-weight: 400;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Dos columnas para formación y experiencia */
+    .two-column {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .text-content {
+      flex: 1 1 60%;
+    }
+
+    .image-float {
+      flex: 1 1 35%;
+      text-align: center;
+      animation: slideIn 1.2s ease forwards;
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    .image-float img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease;
+      cursor: default;
+    }
+
+    .image-float img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Sobre mí - íconos animados */
+    .sobre-mi-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 2.4rem;
+      color: #4a90e2;
+      cursor: default;
+    }
+
+    .sobre-mi-icons i {
+      animation: pulse 1.5s infinite, floatY 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    /* Habilidades: animación flotante */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .skill-card {
+      width: 150px;
+      height: 180px;
+      perspective: 1000px;
+      cursor: pointer;
+      animation: floatY 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover {
+      animation-play-state: paused;
+      transform: scale(1.05);
+    }
+
+    .skill-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .skill-card:hover .skill-inner {
+      transform: rotateY(180deg);
+    }
+
+    .skill-front,
+    .skill-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .skill-front img {
+      width: 50px;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    .skill-front p {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .skill-back {
+      background: #007bff;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    /* Formulario contacto */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button i {
+      margin-right: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: #333;
+      color: white;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Animación flotante general para toda la página (sections + hero) */
+    @keyframes floatY {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    header {
+  background: transparent; /* Sin fondo */
+  color: #333; /* Texto oscuro */
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+
+
+/* NAV */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+nav a {
+  color: #555; /* gris oscuro */
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.4s ease;
+}
+
+/* Underline animated */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.4s ease;
+}
+
+/* Hover effects */
+nav a:hover {
+  color: #007bff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Animación flotante para el header */
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+/* Header base (sin fondo y con animación) */
+header {
+  background: transparent; /* Sin fondo */
+  color: #333;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  font-weight: 700;
+  font-size: 1.4rem;
+  user-select: none;
+}
+
+/* Logo a la izquierda */
+header .logo {
+  flex: 1;
+}
+
+/* Navegación a la derecha */
+nav {
+  flex: 2;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.4s ease;
+}
+
+/* Underline animado */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.4s ease;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Animación flotante para el header */
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+/* Header base (sin fondo y con animación) */
+header {
+  background: transparent; /* Sin fondo */
+  color: #333;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  font-weight: 700;
+  font-size: 1.4rem;
+  user-select: none;
+}
+
+/* Logo a la izquierda */
+header .logo {
+  flex: 1;
+}
+
+/* Navegación a la derecha */
+nav {
+  flex: 2;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.4s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+/* Underline animado */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.4s ease;
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Efecto al hacer click */
+nav a:active {
+  color: #004a99;
+  transform: scale(0.95);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav a:active {
+  color: #004a99;
+  transform: scale(0.95);
+}
+
+
+  /* Reset y básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Segoe UI", sans-serif;
+    height: 2000px; /* para scroll */
+    background: #f5f5f5;
+  }
+
+  /* Header con animación flotante */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: floatY 6s ease-in-out infinite;
+    z-index: 1000;
+    cursor: default;
+  }
+
+  /* Efecto hover para header */
+  header:hover {
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+    transform: scale(1.02);
+  }
+
+  /* Navegación */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.4s ease;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0056b3;
+    transition: width 0.4s ease;
+  }
+  nav a:hover {
+    color: #cce4ff;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  nav a:active {
+    color: #003366;
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+
+  /* Animación flotante */
+  @keyframes floatY {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Espaciado para contenido para que no quede tapado por el header */
+  main {
+    padding-top: 80px;
+  }
+
+  /* Secciones ejemplo */
+  section {
+    height: 600px;
+    padding: 2rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Clases para mostrar/ocultar header */
+  .hide-header {
+    transform: translateY(-100%);
+  }
+  .show-header {
+    transform: translateY(0);
+  }
+
+
+
+/* sds */
+
+#about {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+  margin: 2rem auto;
+  max-width: 900px;
+  animation: floatY 6s ease-in-out infinite;
+}
+
+#about p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #333;
+}
+
+#about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #007bff;
+  text-align: center;
+}
+
+.sobre-mi-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  font-size: 2.4rem;
+  color: #007bff;
+}
+
+.sobre-mi-icons i {
+  animation: pulse 1.5s infinite, floatY 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.sobre-mi-icons i:hover {
+  transform: scale(1.3);
+}
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🥀 Bienvenida a mi Mundo K-Pop 🥀</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">Sobre mí</a></li>
-        <li><a href="#projects">Proyectos</a></li>
-        <li><a href="#contact">Contacto</a></li>
+ 
+<header class="float-animation">
+  <div class="logo">
+    Mi Portfolio
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#skills">Habilidades</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#Formacion">Formacion</a></li>
+      <li><a href="#Experiencia">experiencia</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section class="hero">
+    <div class="nombre">Andrea Alexandra Ramos Hurtado</div>
+    <img style="height: 300px; width: 300px;"
+      src="../foto/foto.jpeg"
+      alt="Foto de perfil"
+      class="perfil"
+    />
+    <p> <i class="fas fa-envelope"></i> andrearamosomgz@gmail.com</p>
+<p><i class="fas fa-phone-alt"></i> +34 123 456 789</p>
+<p><i class="fas fa-map-marker-alt"></i> MADRID, ESPAÑA</p>
+  </section>
+
+  <main class="container">
+    <section id="about">
+      <h2><i class="fas fa-user"></i>Sobre mí</h2>
+      
+        <p><i class="fas fa-user-graduate"></i> Estudiante de grado medio en Sistemas Microinformáticos y Redes Locales.</p>
+<p><i class="fas fa-tools"></i> Con destreza en montaje de equipos y redes locales.</p>
+<p><i class="fas fa-bolt"></i> Me destaco por mi rápida capacidad de aprendizaje.</p>
+<p><i class="fas fa-check-circle"></i> Soy responsable y con ganas de seguir creciendo en el área.</p>
+<p><i class="fas fa-mountain"></i> Estoy dispuesta a asumir nuevos desafíos y aportar con actitud proactiva y compromiso.</p>
+
+     
+      <div class="sobre-mi-icons">
+        <i class="fab fa-html5" title="HTML5"></i>
+        <i class="fab fa-css3-alt" title="CSS3"></i>
+        <i class="fab fa-js" title="JavaScript"></i>
+        <i class="fab fa-react" title="React"></i>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2><i class="fas fa-tools"></i>Habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5863/5863029.png"
+                alt="HTML5"
+              />
+              
+            </div>
+            <div class="skill-back">
+              <p>Comunicacion entre mis compañeros</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/11126/11126021.png"
+                alt="CSS3"
+              />
+             
+            </div>
+            <div class="skill-back">
+              <p>Adaptabilidad</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/13135/13135495.png"
+                alt="JavaScript"
+              />
+            
+            </div>
+            <div class="skill-back">
+              <p>Autocontrol emocional</p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/11261/11261844.png"
+                alt="React"
+              />
+            
+            </div>
+            <div class="skill-back">
+              <p>Responsabilidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+    <section id="projects">
+      <h2><i class="fas fa-folder-open"></i>Proyectos</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Proyecto 1</h3>
+          <p>Esperando..</p>
+        </div>
+        <div class="card">
+          <h3>Proyecto 2</h3>
+          <p>Esperando...</p>
+        </div>
+        <div class="card">
+          <h3>Proyecto 3</h3>
+          <p>Esperando...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="Formacion">
+      <h2><i class="fas fa-briefcase"></i>Formacion Academica</h2>
+      <ul class="timeline">
+        <li>
+          <h3>Grado Medio en sistema Microinformaticos y Redes Locales</h3>
+          <p>| SEPTIEMBRE 2024 - ACTUALEMENTE |</p>
+          <p>
+            LINKIA FP (MADRID)
+          </p>
+         <ul>
+              <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/8509/8509734.png"
+                alt="HTML5"
+              />
+              <p>Mantenimiento</p>
+            </div>
+            <div class="skill-back">
+              <p><li><i class="fas fa-tools"></i> capacidad para montar y desmontar PCs.</li></p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/9655/9655717.png"
+                alt="CSS3"
+              />
+              <p>Redes Locales</p>
+            </div>
+            <div class="skill-back">
+              <p><li><i class="fas fa-network-wired"></i>  Configuración de redes e instalación de sistemas operativos.</li></p>
+            </div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-inner">
+            <div class="skill-front">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/689/689358.png"
+                alt="JavaScript"
+              />
+              <p>Sistema Operativo</p>
+            </div>
+            <div class="skill-back">
+              <p> <li><i class="fas fa-desktop"></i> Manejo funcional de Windows y Ubuntu para tareas comunes.</li> </p>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+
+
+</ul>
+        <br>
+        <li>
+          <h3>Titulacion de la ESO</h3>
+          <p>Sagrada Familia</p>
+          <p>2019 - 2023</p>
+          
+        </li>
       </ul>
-    </nav>
-  </header>
+    </section>
 
-  <section id="about">
-    <h2> 🌸Sobre mí </h2>
-    <p>Estudiante de grado medio en Sistemas Microinformaticos y 
-        redes locales. Con destreza en montaje de equipos y desde locales.
-        Me destaco por mi rápida capacidad de aprendizaje,
-        responsabilidad y ganas de seguir creciendo en el área.
-        Estoy dispuesta a asumir nuevos desafios y aportar con actitud
-        proactiva y compromiso.
-    </p>
-  </section>
 
-  <section id="projects">
-    <h2><img src="imagenes/imagen4.jpeg" width="400px" alt="foto"></h2>
-    <div class="project-card">Proyecto 1</div>
-    <div class="project-card">Proyecto 2</div>
-    <!-- Más proyectos -->
-  </section>
+    <section id="Experiencia">
+      <h2><i class="fas fa-briefcase"></i>Experiencia</h2>
+      <ul class="timeline">
+    
+        <li>
+          <h3>Camarera</h3>
+          <p> Oven - Atocha </p>
+          <p>| CONFUEGO |</p>
+          <p>Noviembre 2023 - Marzo 2025</p>
+          <img src="https://www.oven.es/wp-content/uploads/2020/02/italian-restaurant-oven.jpg" alt="Oven" height="350px" width="100%">
+        </li>
+      </ul>
+    </section>
 
-  <!-- Seccion mis intereses -->
-
-   <section id="about">
-    <h2> Sobre mí</h2>
-    <p>Soy una chica apasionada por el desarrollo web, la música y todo lo que brilla ✨</p>
-  </section>
-
-  <section id="projects">
-    <h2>🌸 Mis Intereses</h2>
-    <div class="project-card">Proyecto 1</div>
-    <div class="project-card">Proyecto 2</div>
-    <!-- Más proyectos -->
-  </section>
-
-  <section id="contact">
-    <h2>📩 Contáctame</h2>
-    <form>
-      <input type="text" placeholder="Tu nombre" required>
-      <input type="email" placeholder="Tu correo" required>
-      <textarea placeholder="Tu mensaje kawaii 💌" required></textarea>
-      <button type="submit">Enviar 💖</button>
-    </form>
-  </section>
+    <section id="contact">
+      <h2><i class="fas fa-envelope"></i>Contacto</h2>
+      <form>
+        <input type="text" name="nombre" placeholder="Nombre" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i>Enviar</button>
+      </form>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Creado con amor y brillos ✨</p>
-    <div class="socials">
-      <a href="#">💌 Instagram</a>
-      <a href="#">🎤 TikTok</a>
-      <a href="#">🌐 GitHub</a>
-    </div>
+    &copy; 2025 Andrea. Todos los derechos reservados.
   </footer>
+
+  <script>
+    // Pausar animación flotante en hover habilidades
+    document.querySelectorAll(".skill-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        card.style.animationPlayState = "paused";
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.animationPlayState = "running";
+      });
+    });
+
+     // Código para mostrar/ocultar header al hacer scroll
+  let lastScroll = 0;
+  const header = document.getElementById('header');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scroll hacia abajo: oculta header
+      header.classList.add('hide-header');
+      header.classList.remove('show-header');
+    } else {
+      // Scroll hacia arriba: muestra header
+      header.classList.remove('hide-header');
+      header.classList.add('show-header');
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // Evita valores negativos
+  });
+  </script>
 </body>
 </html>
+
